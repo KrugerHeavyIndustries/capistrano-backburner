@@ -29,7 +29,7 @@ namespace :backburner do
   desc 'Stop the backburner process'
   task :stop do
     on roles(backburner_roles) do
-      within current_path do
+      within release_path do
         with rails_env: fetch(:rails_env) do
           execute :bundle, :exec, backburner_bin, "-k -P #{backburner_pid}"
         end
@@ -56,14 +56,15 @@ namespace :backburner do
     end
   end
 
-  after 'deploy:started', 'backburner:stop'
+  after 'deploy:reverted', 'backburner:stop'
+  after 'deploy:updated', 'backburner:stop'
   after 'deploy:published', 'backburner:start'
 end
 
 namespace :load do
   task :defaults do
-    set :backburner_pid, 'tmp/pids/backburner.pid'
-    set :backburner_log, 'log/backburner.log'
+    set :backburner_pid, File.join(shared_path, 'tmp', 'pids', 'backburner.pid')
+    set :backburner_log, File.join(shared_path, 'log', 'backburner.log')
     set :backburner_queues, nil
     set :backburner_roles, :app
   end
