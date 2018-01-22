@@ -63,8 +63,8 @@ end
 
 namespace :load do
   task :defaults do
-    set :backburner_pid, File.join(shared_path, 'tmp', 'pids', 'backburner.pid')
-    set :backburner_log, File.join(shared_path, 'log', 'backburner.log')
+    set :backburner_pid, -> { File.join(shared_path, 'tmp', 'pids', 'backburner.pid') }
+    set :backburner_log, -> { File.join(shared_path, 'log', 'backburner.log') }
     set :backburner_queues, nil
     set :backburner_roles, :app
   end
