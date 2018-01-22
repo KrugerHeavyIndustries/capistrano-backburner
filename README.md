@@ -46,21 +46,21 @@ set :backburner_queues, ['default','mailer']
 set :backburner_roles, [:app]
 
 # Set the location of the backburner process id file
-# default value: 'tmp/pids/backburner.pid'
+# default value: 'File.join(shared_path, 'tmp', 'pids', 'backburner.pid')'
 set :backburner_pid, 'tmp/pids/backburner.pid'
 
-# Set the location of the backburner log file 
-# default value: 'log/backburner.log'
+# Set the location of the backburner log file
+# default value: 'File.join(shared_path, 'log', 'backburner.log')'
 set :backburner_log, 'log/backburner.log'
 
 ```
 
-It also adds the following hook
+It also adds the following hooks
 
 ```ruby
-after 'deploy:published', 'restart' do
-    invoke 'backburner:restart'
-end
+after 'deploy:reverted', 'backburner:stop'
+after 'deploy:updated', 'backburner:stop'
+after 'deploy:published', 'backburner:start'
 ```
 
 ## Contributing
