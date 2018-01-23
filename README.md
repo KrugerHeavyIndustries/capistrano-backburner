@@ -2,6 +2,8 @@
 
 Backburner support for Capistrano 3.x
 
+[![Gem Version](https://badge.fury.io/rb/capistrano-backburner.svg)](https://badge.fury.io/rb/capistrano-backburner)
+
 ## Installation
 
 Add this line to your application's Gemfile:
