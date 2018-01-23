@@ -7,9 +7,9 @@ Gem::Specification.new do |spec|
   spec.version       = "0.0.9"
   spec.authors       = ["Chris Kruger"]
   spec.email         = ["capistrano-backburner@krugerheavyindustries.com"]
-  spec.summary       = %q{Adds support for backburner to Capistrano 3.x}
-  spec.description   = %q{Adds support for backburner to Capistrano 3.x}
-  spec.homepage      = ""
+  spec.summary       = %q{Support for backburner via Capistrano 3.x}
+  spec.description   = %q{Adds support controlling backburner via Capistrano 3.x}
+  spec.homepage      = "https://github.com/KrugerHeavyIndustries/capistrano-backburner"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
@@ -17,7 +17,7 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.add_dependency 'capistrano', '>= 3.0.0'
+  spec.add_dependency 'capistrano', '~> 3.0'
 
   spec.add_development_dependency "rake", "~> 10.0"
 end
